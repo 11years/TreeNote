@@ -1,0 +1,17 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:NoteSheet="clr-namespace:TreeNote.NoteSheet" x:Class="TreeNote.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Left">
+            <TreeView>dasfa</TreeView>
+        </DockPanel>
+        
+        <DockPanel DockPanel.Dock="Left">
+        <NoteSheet:NoteSheet DockPanel.Dock="Top"/>
+        <NoteSheet:NoteSheet />
+        </DockPanel>
+        
+    </DockPanel>
+</Window>
