@@ -2,39 +2,23 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:NoteSheet="clr-namespace:TreeNote.NoteSheet" xmlns:Elements="clr-namespace:TreeNote.Elements" x:Class="TreeNote.MainWindow"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="544.6" Width="765.8">
     <DockPanel>
-        <DockPanel DockPanel.Dock="Top">
-            <Button Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="New"/>
-            <Button Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="Open" />
-            <Button Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="SaveAs" />
-            <Button x:Name="lblSaveBtn" Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" MouseDown="lblSaveBtn_MouseDown" Content="Save" />
-            <Button Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="Conf" />
-            <TextBox Style="{StaticResource SearchBox}" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,5,5,5" MaxWidth="250" MinWidth="200" Height="25"/>
+        <DockPanel DockPanel.Dock="Top" Background="#FF47A5E4">
+            <Button Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="新規作成"/>
+            <Button Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="開く" />
+            <Button Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="別名保存" />
+            <Button x:Name="lblSaveBtn" Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" MouseDown="lblSaveBtn_MouseDown" Content="上書き保存" />
+            <Button Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="設定" />
+            <TextBox Style="{StaticResource SearchBox}" Background="#FFFFFF" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,5,5,5" MaxWidth="250" MinWidth="200" Height="25"/>
         </DockPanel>
-        
-        <TabControl>
-            <TabItem Header="main">
-                <DockPanel>
-                    <DockPanel DockPanel.Dock="Left">
-                        <TreeView x:Name="treeNotes" Width="200" SelectedItemChanged="treeNotes_SelectedItemChanged"/>
-                    </DockPanel>
-                    <DockPanel DockPanel.Dock="Top">
-                        <Elements:AddressBar DockPanel.Dock="Top" x:Name="adrsActiveNote" VerticalAlignment="Top" Height="20"/>
-                        <Elements:NoteViewControl DockPanel.Dock="Left" VerticalAlignment="Top" Height="30"/>
-                        <TextBox Style="{StaticResource SearchBox}" DockPanel.Dock="Right" HorizontalAlignment="Right" MaxWidth="300" MinWidth="120" Margin="3,3,3,3"></TextBox>
-                    </DockPanel>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <DockPanel>
-                            <DockPanel x:Name="dckSelectedNoteView" DockPanel.Dock="Top">
-                            </DockPanel>
-                            <DockPanel x:Name="dckNoteView" DockPanel.Dock="Top" Margin="20,0,0,0">
-                            </DockPanel>
-                        </DockPanel>
-                    </ScrollViewer>
-                </DockPanel>
-            </TabItem>
-        </TabControl>
+        <DockPanel Background="#FFDAE2EA">
+            <TabControl Margin="0,10,0,0">
+                <TabItem Header="main">
+                    <Elements:MainView/>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
 
     </DockPanel>
 </Window>

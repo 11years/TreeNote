@@ -13,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TreeNote
+namespace TreeNote.Elements
 {
     /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
+    /// NoteTreeView.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class NoteTreeView : UserControl
     {
-
-        public MainWindow()
+        public NoteTreeView()
         {
             InitializeComponent();
         }
-
-        private void lblSaveBtn_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //this._note.Save(@"C:\Users\yusuke.gotou\Documents\Visual Studio 2012\Projects\TreeNote\TreeNote\bin\Debug\sample.txt");
-        }
-
     }
 }

@@ -21,7 +21,7 @@ namespace TreeNote.NoteSheet
     public partial class NoteSheet : UserControl
     {
 
-        public Classes.Note _note;
+        public Classes.Note item;
 
         public static readonly RoutedEvent EnterNoteEvent;
         static NoteSheet()
@@ -55,9 +55,7 @@ namespace TreeNote.NoteSheet
         {
             InitializeComponent();
 
-            //this.btnSelect.AddHandler(Button.ClickEvent, new RoutedEventHandler(fire_EnterNoteEvent)); 
-
-            this._note = note;
+            this.item = note;
 
             this.SetNote();
 
@@ -66,20 +64,42 @@ namespace TreeNote.NoteSheet
 
         protected void SetNote()
         {
-            this.btnTitle.Content = this._note.title;
-            this.txtBody.Text = this._note.body;
+            this.btnTitle.Content = this.item.title;
+            this.txtBody.Text = this.item.body;
         }
 
         private void btnTitle_Click(object sender, RoutedEventArgs e)
         {
+            Switch();
+        }
+
+        /// <summary>
+        /// 本文の開閉切り替え
+        /// </summary>
+        public void Switch()
+        {
             if (this.txtBody.IsVisible)
             {
-                this.txtBody.Visibility = System.Windows.Visibility.Collapsed;
+                CloseBody();
             }
             else
             {
-                this.txtBody.Visibility = System.Windows.Visibility.Visible;
+                OpenBody();
             }
+        }
+        /// <summary>
+        /// 本文開く
+        /// </summary>
+        public void OpenBody()
+        {
+            this.txtBody.Visibility = System.Windows.Visibility.Visible;
+        }
+        /// <summary>
+        /// 本文閉じる
+        /// </summary>
+        public void CloseBody()
+        {
+            this.txtBody.Visibility = System.Windows.Visibility.Collapsed;
         }
 
 
@@ -104,7 +124,7 @@ namespace TreeNote.NoteSheet
         {
             TextBox tBox = (TextBox)sender;
 
-            this._note.SetTitle(tBox.Text);
+            this.item.SetTitle(tBox.Text);
             this.btnTitle.Content = tBox.Text;
 
             dckHeader.Children.Remove(tBox);
@@ -119,24 +139,21 @@ namespace TreeNote.NoteSheet
 
         protected void _setBody(object sender, RoutedEventArgs e)
         {
-            this._note.SetBody(this.txtBody.Text);
+            this.item.SetBody(this.txtBody.Text);
         }
 
+        /// <summary>
+        /// 本文テキスト編集時にNoteを更新する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBody_GotFocus(object sender, RoutedEventArgs e)
         {
             this.txtBody.TextChanged += _setBody;
         }
-
         private void txtBody_LostFocus(object sender, RoutedEventArgs e)
         {
             this.txtBody.TextChanged -= _setBody;
         }
-
-
-
-        //private void lblDelete_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.EditTitle();
-        //}
     }
 }

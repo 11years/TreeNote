@@ -57,6 +57,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Elements\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\NoteList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\NoteTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Elements\NoteViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,6 +85,15 @@
     <Compile Include="Classes\Note.cs" />
     <Compile Include="Elements\AddressBar.xaml.cs">
       <DependentUpon>AddressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\NoteList.xaml.cs">
+      <DependentUpon>NoteList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\NoteTreeView.xaml.cs">
+      <DependentUpon>NoteTreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\NoteViewControl.xaml.cs">
       <DependentUpon>NoteViewControl.xaml</DependentUpon>

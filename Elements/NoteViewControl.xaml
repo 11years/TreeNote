@@ -6,10 +6,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
     <DockPanel>
-        <Button DockPanel.Dock="Left" Style="{StaticResource SquareButton}">←</Button>
-        <Button DockPanel.Dock="Left" Style="{StaticResource SquareButton}">→</Button>
-        <Button DockPanel.Dock="Left" Style="{StaticResource SquareButton}">↑</Button>
-        <Button DockPanel.Dock="Left" Style="{StaticResource SquareButton}">開</Button>
-        <Button HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource SquareButton}">閉</Button>
+        <Button x:Name="btnPrev" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnPrev_Click">←</Button>
+        <Button x:Name="btnNext" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnNext_Click">→</Button>
+        <Button x:Name="btnUpper" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnUpper_Click">↑</Button>
+        <Button x:Name="btnAllOpen" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnAllOpen_Click">開</Button>
+        <Button x:Name="btnAllClose" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnAllClose_Click">閉</Button>
     </DockPanel>
 </UserControl>
