@@ -78,10 +78,7 @@ namespace TreeNote.Elements
             this.adrsActiveNote.SetNote(nt);
         }
 
-        private void treeNotes_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            this.Refresh();
-        }
+
 
 
 

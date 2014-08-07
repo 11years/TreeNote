@@ -13,61 +13,38 @@ namespace TreeNote.Classes
         static protected int maxId;
         static public Note root;
 
-        public int parentId { get; protected set; }
-        public int nextId { get; protected set; }
-        public int prevId { get; protected set; }
+        public Classes.Note parent { get; protected set; }
+        public Classes.Note nextItem { get; protected set; }
+        public Classes.Note prevItem { get; protected set; }
         public List<Note> children { get; protected set; }
 
         public int id { get; protected set; }
-        public string title { get; protected set;}
-        public string body { get; protected set;}
+        public string title { get; set;}
+        public string body { get; set;}
 
-        public static Note GetRootInstance()
-        {
-            if (root == null)
-            {
-                root = new Note(0, "TreeNote", "Auther Goto");
-            }
-            return root;
-        }
-
-        protected Note()
+        public Note()
         {
             this.id = -1;
             this.title = "";
             this.body = "";
 
-            this.parentId = -1;
-            this.nextId = -1;
-            this.prevId = -1;
+            this.parent = null;
+            this.nextItem = null;
+            this.prevItem = null;
 
             children = new List<Note>();
         }
 
-        protected Note(int id, string title, string body, int parentId = -1, int prevId = -1, int nextId = -1)
+        protected Note(string title, string body)
         {
-            this.id = id;
+            this.id = -1;
             this.title = title;
             this.body = body;
-
-            this.parentId = parentId;
-            this.nextId = nextId;
-            this.prevId = prevId;
 
             children = new List<Note>();
         }
 
-        public void SetTitle(string title)
-        {
-            this.title = title;
-        }
-
-        public void SetBody(string body)
-        {
-            this.body = body;
-        }
-
-        public int AddChild(string title, string body, int prevNoteID = 1)
+        public int Add(string title, string body, int prevNoteID = 1)
         {
             maxId++;
             this._add(maxId, title, body, prevId);
@@ -127,7 +104,6 @@ namespace TreeNote.Classes
 
             return result;
         }
-
         public bool Read(string xmlPath)
         {
             GetRootInstance();
