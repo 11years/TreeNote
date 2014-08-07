@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="TreeNote.NoteSheet.NoteSheet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+
+    </UserControl.Resources>
+
+        <DockPanel>
+            <DockPanel x:Name="dckHeader" DockPanel.Dock="Top">
+            <Button x:Name="btnSelect" Style="{StaticResource SquareButton}" DockPanel.Dock="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnSelect_Click">＞</Button>
+            <DockPanel></DockPanel>
+            <Button x:Name="btnDelete" Style="{StaticResource SquareButton}" DockPanel.Dock="Right" >....</Button>
+                <!--<TextBox x:Name="txtTitle" Style="{StaticResource TitleEdit}" Visibility="Collapsed" LostFocus="txtTitle_LostFocus" MouseDown="txtTitle_MouseDown">tttああああああああああああt</TextBox>-->
+                <!--<Button x:Name="btnTitle" Style="{StaticResource TitleButton}" Width="{Binding Width, ElementName=txtTitle}" HorizontalContentAlignment="Stretch" Content="{Binding Text, ElementName=txtTitle}" Click="btnTitle_Click" MouseDoubleClick="btnTitle_MouseDoubleClick"></Button>-->
+                <Button x:Name="btnTitle" Style="{StaticResource TitleButton}" HorizontalContentAlignment="Stretch" Content="testesButton" Click="btnTitle_Click"/>
+        </DockPanel>
+        <TextBox x:Name="txtBody" Style="{StaticResource BodyStyle}" DockPanel.Dock="Top" TextWrapping="Wrap" TextChanged="txtBody_TextChanged" GotFocus="txtBody_GotFocus" LostFocus="txtBody_LostFocus">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</TextBox>
+    </DockPanel>
+</UserControl>

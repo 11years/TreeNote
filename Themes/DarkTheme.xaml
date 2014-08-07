@@ -1,54 +1,101 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--パネル共通-->
+    <Style x:Key="PanelCommon" TargetType="Control">
+        <Setter Property="Control.Background" Value="#666666" />
+        <Setter Property="BorderBrush" Value="#777777" />
+    </Style>
+    <Style TargetType="DockPanel" >
+        <Setter Property="Control.Background" Value="#505050" />
+    </Style>
     
-        <!--タイトルバー共通-->
-        <Style x:Key="TitleBarStyle">
-            <Setter Property="Control.Background" Value="#222222" />
-            <Setter Property="Control.Foreground" Value="#999999" />
-            <Setter Property="Control.BorderThickness" Value="0,0,0,1" />
-            <Setter Property="Control.VerticalContentAlignment" Value="Center" />
+    <!--タイトルバー共通-->
+    <Style x:Key="TitleBarStyle">
+        <Setter Property="Control.Background" Value="#222222" />
+        <Setter Property="Control.Foreground" Value="#999999" />
+        <Setter Property="Control.BorderThickness" Value="0,0,0,1" />
+        <Setter Property="Control.BorderBrush" Value="#888888" />
+        <Setter Property="Control.VerticalContentAlignment" Value="Center" />
 
-            <Style.Triggers>
-                <Trigger Property="Control.IsMouseOver" Value="True">
-                    <Setter Property="Control.Background" Value="#444444" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
 
-        <!--タイトル-->
-        <Style x:Key="TitleStyle" TargetType="TextBox" BasedOn="{StaticResource TitleBarStyle}">
-            <Style.Triggers>
-                <Trigger Property="IsFocused" Value="True">
-                    <Setter Property="Background" Value="#AAAAAA" />
-                    <Setter Property="Foreground" Value="#333333" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+    </Style>
 
-        <!--タイトルバーボタン-->
-        <Style TargetType="Label" BasedOn="{StaticResource TitleBarStyle}">
-            <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}" />
-            <Setter Property="Control.HorizontalContentAlignment" Value="Center" />
-            <Setter Property="FontSize" Value="9" />
-        </Style>
+    <!--タイトル-->
+    <Style TargetType="Button" x:Key="TitleButton" BasedOn="{StaticResource TitleBarStyle}">
+        <Setter Property="Background" Value="#222222" />
+        <Setter Property="Foreground" Value="#999999" />
 
-        <!--本文-->
-        <Style x:Key="SubjectStyle" TargetType="TextBox">
-            <Setter Property="Background" Value="#333333" />
-            <Setter Property="Foreground" Value="#BBBBBB" />
-            <Setter Property="Control.BorderThickness" Value="0,0,0,1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="0" 
+                                HorizontalAlignment="Stretch">
+                        <TextBlock Text="{TemplateBinding Property=Content}"
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Foreground="{TemplateBinding Property=Foreground}"/>
+                    </Border>
 
-            <Setter Property="AcceptsReturn" Value="True" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#555555" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="#555555" />
+                            <Setter Property="Foreground" Value="#CCCCCC" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="TitleEdit" TargetType="TextBox" BasedOn="{StaticResource TitleBarStyle}">
+        <Setter Property="Background" Value="#AAAAAA" />
+        <Setter Property="Foreground" Value="#333333" />
+    </Style>
 
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#555555" />
-                </Trigger>
-                <Trigger Property="IsFocused" Value="True">
-                    <Setter Property="Background" Value="#AAAAAA" />
-                    <Setter Property="Foreground" Value="#333333" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+    <!--タイトルバーボタン-->
+    <Style x:Key="FakeButton" TargetType="Label" BasedOn="{StaticResource TitleBarStyle}">
+        <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}" />
+        <Setter Property="Control.HorizontalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="9" />
+        <Style.Triggers>
+            <Trigger Property="Control.IsMouseOver" Value="True">
+                <Setter Property="Control.Background" Value="#444444" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--メニューボタン-->
+    <Style x:Key="MenuButton" TargetType="Button" BasedOn="{StaticResource SquareButton}">
+        <Setter Property="Height" Value="42"/>
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="Margin" Value="2,5,2,5" />
+    </Style>
+
+    <!--本文-->
+    <Style x:Key="BodyStyle" TargetType="TextBox">
+        <Setter Property="Background" Value="#444444" />
+        <Setter Property="Foreground" Value="#BBBBBB" />
+        <Setter Property="BorderThickness" Value="0,0,0,1" />
+        <Setter Property="BorderBrush" Value="#888888" />
+
+        <Setter Property="AcceptsReturn" Value="True" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#555555" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#AAAAAA" />
+                <Setter Property="Foreground" Value="#333333" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 </ResourceDictionary>

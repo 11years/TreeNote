@@ -53,6 +53,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Elements\AddressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Elements\NoteViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,11 +70,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Common.cs" />
+    <Compile Include="Classes\Note.cs" />
+    <Compile Include="Elements\AddressBar.xaml.cs">
+      <DependentUpon>AddressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\NoteViewControl.xaml.cs">
+      <DependentUpon>NoteViewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NoteSheet\NoteSheet.xaml">
+    <Page Include="Elements\NoteSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Common.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,7 +95,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NoteSheet\NoteSheet.xaml.cs">
+    <Compile Include="Elements\NoteSheet.xaml.cs">
       <DependentUpon>NoteSheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
