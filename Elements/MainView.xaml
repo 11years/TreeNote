@@ -8,21 +8,26 @@
              d:DesignHeight="300" d:DesignWidth="600">
     
     <DockPanel>
-        <DockPanel DockPanel.Dock="Left">
-            <Elements:NoteTreeView Width="200"></Elements:NoteTreeView>
+        <DockPanel DockPanel.Dock="Left" Margin="10" Width="200">
+            <Elements:NoteTreeViewControlPanel x:Name="ntvControl" 
+                                               DockPanel.Dock="Bottom" Add="ntvControl_Add" Remove="ntvControl_Remove" Insert="ntvControl_Insert"/>
+            <Elements:NoteTreeView x:Name="mainTree" 
+                                   SelectedNoteChange="mainTree_SelectedNoteChange"></Elements:NoteTreeView>
         </DockPanel>
-        <DockPanel DockPanel.Dock="Top">
+        <DockPanel DockPanel.Dock="Top" Margin="10">
             <Elements:AddressBar DockPanel.Dock="Top" x:Name="adrsActiveNote" VerticalAlignment="Top" Height="20"/>
-            <Elements:NoteViewControl x:Name="nvControler" DockPanel.Dock="Left" VerticalAlignment="Top" Height="30"/>
-            <TextBox Style="{StaticResource SearchBox}" 
+            <DockPanel Background="#FFF7BB1A">
+                <Elements:NoteViewControl x:Name="nvControler" DockPanel.Dock="Left" VerticalAlignment="Top" Height="30" AllClose="AllCloseHandler" AllOpen="AllOpenHandler"/>
+                <TextBox Style="{StaticResource SearchBox}" 
                      DockPanel.Dock="Right" 
                      HorizontalAlignment="Right" 
                      MaxWidth="300" 
                      MinWidth="120" 
                      Margin="3,3,3,3"></TextBox>
+            </DockPanel>
         </DockPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <DockPanel>
+            <DockPanel Margin="10">
                 <Elements:NoteList x:Name="notelist" />
             </DockPanel>
         </ScrollViewer>

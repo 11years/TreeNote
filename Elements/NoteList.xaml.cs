@@ -64,5 +64,20 @@ namespace TreeNote.Elements
         {
             this.dckNoteView.Children.Clear();
         }
+
+        public void AllOpen()
+        {
+            foreach(NoteSheet.NoteSheet t in this.dckNoteView.Children)
+            {
+                t.OpenBody();
+            }
+        }
+        public void AllClose()
+        {
+            foreach (NoteSheet.NoteSheet t in this.dckNoteView.Children)
+            {
+                t.CloseBody();
+            }
+        }
     }
 }

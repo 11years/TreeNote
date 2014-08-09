@@ -124,7 +124,7 @@ namespace TreeNote.Classes
         {
             note.id = id;
 
-            for (int i = 0; i < this.children.Count; i++ )
+            for (int i = 0; i < note.children.Count; i++)
             {
                 setID(this.children[i], id + i);
             }

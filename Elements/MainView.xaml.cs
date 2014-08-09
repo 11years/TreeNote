@@ -22,12 +22,15 @@ namespace TreeNote.Elements
     {
         public Classes.Note Items { get; protected set; }
         public Classes.Note SelectedItem { get; protected set; }
+        protected List<Classes.Note> history;
+        protected int historyInd;
 
         public MainView()
         {
             InitializeComponent();
 
-            
+            history = new List<Classes.Note>();
+            historyInd = 0;
 
             this.nvControler.GoBack += this.GoBackHandler;
             this.nvControler.GoNext += this.GoNextHandler;
@@ -35,85 +38,96 @@ namespace TreeNote.Elements
             this.nvControler.AllOpen += this.AllOpenHandler;
             this.nvControler.AllClose += this.AllCloseHandler;
 
-            
         }
 
         public void SetNote(Classes.Note note)
         {
             this.Items = note;
-            RefreshTree();
+            this.mainTree.SetNote(note);
         }
 
-        public void RefreshTree()
+        public void SelectNote(Classes.Note note, bool updateHistory = true)
         {
-            TreeViewItem tvi = new TreeViewItem();
+            this.SelectedItem = note;
 
-            this.ReadNote(tvi, this.Items);
-
-            //this.treeNotes.Items.Add(tvi);
-        }
-
-        protected TreeViewItem ReadNote(TreeViewItem tvi, Classes.Note nt)
-        {
-            tvi.Header = nt.title;
-            tvi.Tag = nt.id;
-
-            if (nt.HasChild())
+            if (note != null)
             {
-                foreach (Classes.Note cnt in nt.children)
+                if (updateHistory)
                 {
-                    TreeViewItem ttvi = new TreeViewItem();
-                    this.ReadNote(ttvi, cnt);
-                    tvi.Items.Add(ttvi);
+                    for(int i = historyInd  - 1; i >= 0; i--)
+                    {
+                        history.RemoveAt(i);
+                    }
+                    history.Insert(0, note);
+                    historyInd = 0;
                 }
+
+                this.notelist.SetNote(note);
+                this.adrsActiveNote.SetNote(note);
+            }else{
+                this.notelist.Clear();
+                //アドレスバー初期化未実装
             }
-            return tvi;
         }
 
-        public void Refresh()
+        protected void History(int moveCnt)
         {
-            
-
-            //TreeViewItem tvi = (TreeViewItem)this.treeNotes.SelectedItem;
-
-            //Classes.Note nt = this.Items.Find((int)tvi.Tag);
-
-            //this.ReadNotes(nt);
-
-            //this.adrsActiveNote.SetNote(nt);
+            int thist = historyInd + moveCnt;
+            if (thist >= 0 && thist < history.Count)
+            {
+                historyInd = thist;
+                SelectNote(history[historyInd],false);
+            }
         }
-
-
-
-
 
         //イベントハンドラ
 
         private void GoBackHandler(object sender, RoutedEventArgs e)
         {
-            //未実装
+            History(1);
         }
         private void GoNextHandler(object sender, RoutedEventArgs e)
         {
-            //未実装
+            History(-1);
         }
         private void UpperHandler(object sender, RoutedEventArgs e)
         {
-            //未実装
+            if (this.SelectedItem != null)
+            {
+                if (this.SelectedItem.parent != null)
+                {
+                    this.SelectNote(this.SelectedItem.parent);
+                }
+            }
         }
         private void AllOpenHandler(object sender, RoutedEventArgs e)
         {
-            //foreach (NoteSheet.NoteSheet tns in this.dckNoteView.Children)
-            //{
-            //    tns.OpenBody();
-            //}
+            this.notelist.AllOpen();
         }
         private void AllCloseHandler(object sender, RoutedEventArgs e)
         {
-            //foreach (NoteSheet.NoteSheet tns in this.dckNoteView.Children)
-            //{
-            //    tns.CloseBody();
-            //}
+            this.notelist.AllClose();
         }
+
+        private void mainTree_SelectedNoteChange(object sender, RoutedEventArgs e)
+        {
+            SelectNote(((Elements.NoteTreeView)sender).SelectedNote());
+        }
+
+        private void ntvControl_Add(object sender, RoutedEventArgs e)
+        {
+            this.mainTree.AddNote();
+        }
+
+        private void ntvControl_Insert(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ntvControl_Remove(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

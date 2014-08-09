@@ -37,7 +37,7 @@ namespace TreeNote.Elements
 
                 if (tn.HasParent())
                 {
-                    tn = tn.Search(tn.parent.id);
+                    tn = tn.parent;
                 }
                 else
                 { 

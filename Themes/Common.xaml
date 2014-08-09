@@ -51,7 +51,42 @@
         <Setter Property="Height" Value="AUTO" />
         <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}" />
     </Style>
-    
+
+    <!--ノートビューメニューボタンの背景-->
+    <Style x:Key="NoteViewMenuBack" TargetType="DockPanel">
+        <Setter Property="Background" Value="#FFF7BB1A"></Setter>
+    </Style>
+    <!--ノートビューメニューボタン-->
+    <Style x:Key="NoteViewMenuButton" TargetType="Button" BasedOn="{StaticResource SquareButton}">
+        <Setter Property="Background" >
+            <Setter.Value>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="#000000" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <SolidColorBrush Color="White" Opacity="0.3"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <!--<Setter Property="Background" Value="#555555" />-->
+                <!--<Setter Property="Foreground" Value="#CCCCCC" />-->
+                <!--<Setter Property="FontWeight" Value="Bold" />-->
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <SolidColorBrush Color="White" Opacity="0.4"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!--アドレスボタン-->
     <Style x:Key="AddressButton" TargetType="Button" BasedOn="{StaticResource FlatButton}">
         <Setter Property="FontSize" Value="10" />
@@ -61,7 +96,7 @@
 
     <!--丸いテキストボックス-->
     <Style x:Key="SearchBox" TargetType="TextBox">
-        <Setter Property="Background" Value="#AAAAAA"/>
+        <Setter Property="Background" Value="White"/>
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Padding" Value="5,1,5,1" />
         

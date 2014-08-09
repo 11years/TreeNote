@@ -3,9 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Classes="clr-namespace:TreeNote.Classes"
+             xmlns:Elements="clr-namespace:TreeNote.Elements"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <HierarchicalDataTemplate x:Key="treeViewTemplate"
+            ItemsSource="{Binding Path=children}">
+            <TextBlock Text="{Binding Path=title}" />
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>
+
     <DockPanel>
-        <TreeView x:Name="treeNotes" SelectedItemChanged="treeNotes_SelectedItemChanged"/>
+
+        <TreeView x:Name="treeNotes" 
+                  DockPanel.Dock="Top"
+                  SelectedItemChanged="treeNotes_SelectedItemChanged"
+                  VerticalAlignment="Stretch"
+                  ItemTemplate="{StaticResource treeViewTemplate}" />
     </DockPanel>
 </UserControl>

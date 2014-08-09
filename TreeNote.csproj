@@ -69,6 +69,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Elements\NoteTreeViewControlPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Elements\NoteViewControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +100,9 @@
     </Compile>
     <Compile Include="Elements\NoteTreeView.xaml.cs">
       <DependentUpon>NoteTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\NoteTreeViewControlPanel.xaml.cs">
+      <DependentUpon>NoteTreeViewControlPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\NoteViewControl.xaml.cs">
       <DependentUpon>NoteViewControl.xaml</DependentUpon>

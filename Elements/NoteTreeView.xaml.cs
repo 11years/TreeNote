@@ -21,11 +21,14 @@ namespace TreeNote.Elements
     public partial class NoteTreeView : UserControl
     {
         public static readonly RoutedEvent SelectedNoteChangeEvent;
+        List<Classes.Note> treeitem;
 
         public NoteTreeView()
         {
             InitializeComponent();
         }
+
+        //public Classes.Note item { get; protected set; }
 
         /// <summary>
         /// RoutedEventの登録
@@ -54,8 +57,71 @@ namespace TreeNote.Elements
 
         public Classes.Note SelectedNote()
         {
-            //未実装
-            return null;
+            return (Classes.Note)this.treeNotes.SelectedItem;
+        }
+
+        public void SetNote(Classes.Note note)
+        {
+            //this.item = note;
+
+            treeitem = new List<Classes.Note>();
+            treeitem.Add(note);
+
+            this.treeNotes.ItemsSource = treeitem;
+            
+        }
+
+        public void SelectNote(Classes.Note note)
+        {
+            foreach (TreeViewItem t in this.treeNotes.Items)
+            {
+                //未実装
+            }
+        }
+
+        public void AddNote(Classes.Note note = null)
+        {
+            if (note == null)
+            {
+                //新規追加
+                Classes.Note newNote = new Classes.Note(DateTime.Now.ToString(),"");
+                Classes.Note selectedNote = (Classes.Note)this.treeNotes.SelectedItem;
+
+                selectedNote.Add(newNote);
+
+                //ツリービューの表示を更新
+                //this.treeNotes.Items.Refresh();
+            }
+            else
+            {
+                //既存のものを追加
+            }
+        }
+
+        //public void RefreshTree()
+        //{
+        //    TreeViewItem tvi = new TreeViewItem();
+
+        //    this.ReadNote(tvi, this.item);
+
+        //    this.treeNotes.Items.Add(tvi);
+        //}
+
+        protected TreeViewItem ReadNote(TreeViewItem tvi, Classes.Note nt)
+        {
+            tvi.Header = nt.title;
+            tvi.Tag = nt.id;
+
+            if (nt.HasChild())
+            {
+                foreach (Classes.Note cnt in nt.children)
+                {
+                    TreeViewItem ttvi = new TreeViewItem();
+                    this.ReadNote(ttvi, cnt);
+                    tvi.Items.Add(ttvi);
+                }
+            }
+            return tvi;
         }
     }
 }

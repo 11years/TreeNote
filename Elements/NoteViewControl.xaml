@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
-    <DockPanel>
-        <Button x:Name="btnPrev" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnPrev_Click">←</Button>
-        <Button x:Name="btnNext" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnNext_Click">→</Button>
-        <Button x:Name="btnUpper" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnUpper_Click">↑</Button>
-        <Button x:Name="btnAllOpen" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnAllOpen_Click">開</Button>
-        <Button x:Name="btnAllClose" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource SquareButton}" Click="btnAllClose_Click">閉</Button>
+    <DockPanel Style="{StaticResource NoteViewMenuBack}">
+        <Button x:Name="btnPrev" DockPanel.Dock="Left" Style="{StaticResource NoteViewMenuButton}" Click="btnPrev_Click">←</Button>
+        <Button x:Name="btnNext" DockPanel.Dock="Left" Style="{StaticResource NoteViewMenuButton}" Click="btnNext_Click">→</Button>
+        <Button x:Name="btnUpper" DockPanel.Dock="Left" Style="{StaticResource NoteViewMenuButton}" Click="btnUpper_Click">↑</Button>
+        <Button x:Name="btnAllOpen" DockPanel.Dock="Left" Style="{StaticResource NoteViewMenuButton}" Click="btnAllOpen_Click">開</Button>
+        <Button x:Name="btnAllClose" HorizontalAlignment="Left" DockPanel.Dock="Left" Style="{StaticResource NoteViewMenuButton}" Click="btnAllClose_Click">閉</Button>
     </DockPanel>
 </UserControl>
