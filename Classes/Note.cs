@@ -5,17 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Xml;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace TreeNote.Classes
 {
-    public class Note
+    public class Note : INotifyPropertyChanged
     {
         protected int maxId;
 
         public Classes.Note parent { get; internal set; }
         public Classes.Note nextItem { get; internal set; }
         public Classes.Note prevItem { get; internal set; }
-        public List<Note> children { get; protected set; }
+        public ObservableCollection<Classes.Note> children { get; protected set; }
 
         public int id { get; internal set; }
         public string title { get; set;}
@@ -36,7 +38,7 @@ namespace TreeNote.Classes
 
             this.maxId = 1;
 
-            children = new List<Note>();
+            children = new ObservableCollection<Note>();
         }
         /// <summary>
         /// コンストラクタ
@@ -49,7 +51,21 @@ namespace TreeNote.Classes
             this.title = title;
             this.body = body;
 
-            children = new List<Note>();
+            children = new ObservableCollection<Note>();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(string info)
+        {
+
+            if (PropertyChanged != null)
+            {
+
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+
+            }
+
         }
 
         /// <summary>
@@ -278,7 +294,8 @@ namespace TreeNote.Classes
                 }
             }
 
-            Note ret = ConstructionNotes(itemList,-1,-1,null,null);
+            Note ret = new Note();
+            ConstructionNotes(itemList, -1, -1, ret, null);
 
              return ret;
 

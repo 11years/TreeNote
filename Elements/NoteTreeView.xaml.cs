@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace TreeNote.Elements
 {
@@ -60,14 +62,15 @@ namespace TreeNote.Elements
             return (Classes.Note)this.treeNotes.SelectedItem;
         }
 
-        public void SetNote(Classes.Note note)
+        public void SetNote(ObservableCollection<Classes.Note> note)
         {
             //this.item = note;
 
-            treeitem = new List<Classes.Note>();
-            treeitem.Add(note);
+            //treeitem = new List<Classes.Note>();
+            //treeitem.Add(note);
 
-            this.treeNotes.ItemsSource = treeitem;
+            //this.treeNotes.ItemsSource = treeitem;
+            this.treeNotes.ItemsSource = note;
             
         }
 

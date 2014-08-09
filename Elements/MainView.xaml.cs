@@ -43,7 +43,7 @@ namespace TreeNote.Elements
         public void SetNote(Classes.Note note)
         {
             this.Items = note;
-            this.mainTree.SetNote(note);
+            this.mainTree.SetNote(note.children);
         }
 
         public void SelectNote(Classes.Note note, bool updateHistory = true)
