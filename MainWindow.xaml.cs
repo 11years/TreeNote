@@ -24,6 +24,11 @@ namespace TreeNote
         public MainWindow()
         {
             InitializeComponent();
+
+            Classes.Note note = Classes.NoteReader.Read(
+                System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + @"\sample.txt");
+
+            this.main.SetNote(note);
         }
 
         private void lblSaveBtn_MouseDown(object sender, MouseButtonEventArgs e)

@@ -9,12 +9,17 @@
     
     <DockPanel>
         <DockPanel DockPanel.Dock="Left">
-            
+            <Elements:NoteTreeView Width="200"></Elements:NoteTreeView>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Elements:AddressBar DockPanel.Dock="Top" x:Name="adrsActiveNote" VerticalAlignment="Top" Height="20"/>
             <Elements:NoteViewControl x:Name="nvControler" DockPanel.Dock="Left" VerticalAlignment="Top" Height="30"/>
-            <TextBox Style="{StaticResource SearchBox}" DockPanel.Dock="Right" HorizontalAlignment="Right" MaxWidth="300" MinWidth="120" Margin="3,3,3,3"></TextBox>
+            <TextBox Style="{StaticResource SearchBox}" 
+                     DockPanel.Dock="Right" 
+                     HorizontalAlignment="Right" 
+                     MaxWidth="300" 
+                     MinWidth="120" 
+                     Margin="3,3,3,3"></TextBox>
         </DockPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <DockPanel>

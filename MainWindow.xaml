@@ -15,7 +15,7 @@
         <DockPanel Background="#FFDAE2EA">
             <TabControl Margin="0,10,0,0">
                 <TabItem Header="main">
-                    <Elements:MainView/>
+                    <Elements:MainView x:Name="main"/>
                 </TabItem>
             </TabControl>
         </DockPanel>

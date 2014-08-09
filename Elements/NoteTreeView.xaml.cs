@@ -55,6 +55,7 @@ namespace TreeNote.Elements
         public Classes.Note SelectedNote()
         {
             //未実装
+            return null;
         }
     }
 }

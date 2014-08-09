@@ -12,9 +12,9 @@ namespace TreeNote.Classes
     {
         protected int maxId;
 
-        public Classes.Note parent { get; protected set; }
-        public Classes.Note nextItem { get; protected set; }
-        public Classes.Note prevItem { get; protected set; }
+        public Classes.Note parent { get; internal set; }
+        public Classes.Note nextItem { get; internal set; }
+        public Classes.Note prevItem { get; internal set; }
         public List<Note> children { get; protected set; }
 
         public int id { get; internal set; }
@@ -129,7 +129,7 @@ namespace TreeNote.Classes
                 setID(this.children[i], id + i);
             }
         }
-        protected Classes.Note getRoot()
+        internal Classes.Note getRoot()
         {
             if (this.parent != null)
             {
@@ -216,57 +216,6 @@ namespace TreeNote.Classes
             return null;
         }
 
-
-
-        public bool Save(string xmlPath)
-        {
-            bool result = false;
-            // XML設定
-            XmlWriterSettings setting = new XmlWriterSettings();
-            setting.Indent = true;
-            setting.IndentChars = "    ";   // スペース４つ
-
-            using (XmlWriter w = XmlWriter.Create(xmlPath, setting))
-            {
-                w.WriteStartElement("root");
-
-                result = this._save(root, w);
-
-                w.WriteEndElement(); // </Books>
-            }
-
-            return result;
-        }
-        protected bool _save(Note targetNote, XmlWriter w)
-        {
-            if (targetNote != root)
-            {
-                w.WriteStartElement("Note");
-
-                w.WriteElementString("Id", targetNote.id.ToString());
-                w.WriteElementString("Title", targetNote.title);
-                w.WriteElementString("Body", targetNote.body);
-
-                if (targetNote.HasPrev())
-                {
-                    w.WriteElementString("PrevId", targetNote.prevId.ToString());
-                }
-
-                w.WriteElementString("ParentId", targetNote.parentId.ToString());
-
-                w.WriteEndElement(); // </Note>
-
-            }
-
-            if (targetNote.HasChild())
-            {
-                foreach (Note tn in targetNote.children)
-                {
-                    this._save(tn, w);
-                }
-            }
-            return true;
-        }
     }
 
     class NoteReader
@@ -329,48 +278,105 @@ namespace TreeNote.Classes
                 }
             }
 
-            Note ret = ConstructionNotes(itemList);
-            
+            Note ret = ConstructionNotes(itemList,-1,-1,null,null);
 
-
-
-            return ret;
+             return ret;
 
         }
 
-        protected static Note ConstructionNotes(List<Tuple<int, string, string, int, int>> paramList)
+        protected static Note ConstructionNotes(List<Tuple<int, string, string, int, int>> paramList, int parentId, int prevId, Note parent, Note prev)
         {
-            int targetId;
-            int prevId;
+            Note ret = null;
 
-            if (outList.Count == 0)
-            {
-                targetId = -1;
-            }
-            else
-            {
-            }
-        }
-        protected static Tuple<int, string, string, int, int> ConstructionNote(List<Tuple<int, string, string, int, int>> paramList, int targetId, int prevId)
-        {
             var obj = 
                 from q in paramList 
-                where q.Item4 == targetId && q.Item5 == prevId 
+                where q.Item4 == parentId && q.Item5 == prevId 
                 select q;
 
             List<Tuple<int, string, string, int, int>> t = obj.ToList();
 
-            Note ret = new Note();
-            ret.id = t[0].Item1;
-            ret.title = t[0].Item2;
-            ret.body = t[0].Item3;
-            
+            if (t.Count > 0)
+            {
+                ret = new Note();
+                ret.id = t[0].Item1;
+                ret.title = t[0].Item2;
+                ret.body = t[0].Item3;
 
-            return t[0];
+                if (parent != null)
+                {
+                    parent.children.Add(ret);
+                    ret.parent = parent;
+                }
+
+                if (prev != null)
+                {
+                    prev.nextItem = ret;
+                    ret.prevItem = prev;
+                }
+
+                //子
+                ConstructionNotes(paramList, ret.id, -1, ret, null);
+
+                //兄弟
+                ConstructionNotes(paramList, parentId, ret.id, parent, ret);
+
+            }
+
+            return ret;
+            
         }
     }
 
     class NoteWriter
     {
+        public bool Save(string xmlPath,Note target)
+        {
+            bool result = false;
+            // XML設定
+            XmlWriterSettings setting = new XmlWriterSettings();
+            setting.Indent = true;
+            setting.IndentChars = "    ";   // スペース４つ
+
+            using (XmlWriter w = XmlWriter.Create(xmlPath, setting))
+            {
+                w.WriteStartElement("root");
+
+                result = this._save(target.getRoot(), w);
+
+                w.WriteEndElement(); // </Books>
+            }
+
+            return result;
+        }
+        protected bool _save(Note targetNote, XmlWriter w)
+        {
+            if (targetNote != targetNote.getRoot())
+            {
+                w.WriteStartElement("Note");
+
+                w.WriteElementString("Id", targetNote.id.ToString());
+                w.WriteElementString("Title", targetNote.title);
+                w.WriteElementString("Body", targetNote.body);
+
+                if (targetNote.HasPrev())
+                {
+                    w.WriteElementString("PrevId", targetNote.prevItem.id.ToString());
+                }
+
+                w.WriteElementString("ParentId", targetNote.parent.id.ToString());
+
+                w.WriteEndElement(); // </Note>
+
+            }
+
+            if (targetNote.HasChild())
+            {
+                foreach (Note tn in targetNote.children)
+                {
+                    this._save(tn, w);
+                }
+            }
+            return true;
+        }
     }
 }

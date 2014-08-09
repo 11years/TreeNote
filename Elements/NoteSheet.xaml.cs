@@ -124,7 +124,7 @@ namespace TreeNote.NoteSheet
         {
             TextBox tBox = (TextBox)sender;
 
-            this.item.SetTitle(tBox.Text);
+            this.item.title = tBox.Text;
             this.btnTitle.Content = tBox.Text;
 
             dckHeader.Children.Remove(tBox);
@@ -139,7 +139,7 @@ namespace TreeNote.NoteSheet
 
         protected void _setBody(object sender, RoutedEventArgs e)
         {
-            this.item.SetBody(this.txtBody.Text);
+            this.item.body = this.txtBody.Text;
         }
 
         /// <summary>

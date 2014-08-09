@@ -27,8 +27,7 @@ namespace TreeNote.Elements
         {
             InitializeComponent();
 
-            this.Items = Classes.Note.GetRootInstance();
-            this.Items.Read(System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + @"\sample.txt");
+            
 
             this.nvControler.GoBack += this.GoBackHandler;
             this.nvControler.GoNext += this.GoNextHandler;
@@ -36,6 +35,12 @@ namespace TreeNote.Elements
             this.nvControler.AllOpen += this.AllOpenHandler;
             this.nvControler.AllClose += this.AllCloseHandler;
 
+            
+        }
+
+        public void SetNote(Classes.Note note)
+        {
+            this.Items = note;
             RefreshTree();
         }
 
@@ -45,7 +50,7 @@ namespace TreeNote.Elements
 
             this.ReadNote(tvi, this.Items);
 
-            this.treeNotes.Items.Add(tvi);
+            //this.treeNotes.Items.Add(tvi);
         }
 
         protected TreeViewItem ReadNote(TreeViewItem tvi, Classes.Note nt)
@@ -75,7 +80,7 @@ namespace TreeNote.Elements
 
             //this.ReadNotes(nt);
 
-            this.adrsActiveNote.SetNote(nt);
+            //this.adrsActiveNote.SetNote(nt);
         }
 
 
@@ -86,35 +91,29 @@ namespace TreeNote.Elements
 
         private void GoBackHandler(object sender, RoutedEventArgs e)
         {
-            Classes.Note tn = ((NoteSheet.NoteSheet)sender).item;
-            this.(tn);
-            this.adrsActiveNote.SetNote(tn);
+            //未実装
         }
         private void GoNextHandler(object sender, RoutedEventArgs e)
         {
-            Classes.Note tn = ((NoteSheet.NoteSheet)sender).item;
-            this.ReadNotes(tn);
-            this.adrsActiveNote.SetNote(tn);
+            //未実装
         }
         private void UpperHandler(object sender, RoutedEventArgs e)
         {
-            Classes.Note tn = ((NoteSheet.NoteSheet)sender).item;
-            this.notelist.se(tn);
-            this.adrsActiveNote.SetNote(tn);
+            //未実装
         }
         private void AllOpenHandler(object sender, RoutedEventArgs e)
         {
-            foreach (NoteSheet.NoteSheet tns in this.dckNoteView.Children)
-            {
-                tns.OpenBody();
-            }
+            //foreach (NoteSheet.NoteSheet tns in this.dckNoteView.Children)
+            //{
+            //    tns.OpenBody();
+            //}
         }
         private void AllCloseHandler(object sender, RoutedEventArgs e)
         {
-            foreach (NoteSheet.NoteSheet tns in this.dckNoteView.Children)
-            {
-                tns.CloseBody();
-            }
+            //foreach (NoteSheet.NoteSheet tns in this.dckNoteView.Children)
+            //{
+            //    tns.CloseBody();
+            //}
         }
     }
 }
