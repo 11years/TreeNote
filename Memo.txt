@@ -1,4 +1,6 @@
-﻿●NoteTreeView
-SetNote
-Refresh
-SelectedItem
+﻿積み残し
+
+タイトル編集時にツリービューの表示が更新されない
+フィルタ
+検索
+ツリーコンテキストメニュー
