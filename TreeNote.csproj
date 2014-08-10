@@ -87,8 +87,6 @@
     </Compile>
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Classes\Note.cs" />
-    <Compile Include="Classes\NoteReader.cs" />
-    <Compile Include="Classes\NoteWriter.cs" />
     <Compile Include="Elements\AddressBar.xaml.cs">
       <DependentUpon>AddressBar.xaml</DependentUpon>
     </Compile>

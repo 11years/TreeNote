@@ -356,7 +356,7 @@ namespace TreeNote.Classes
 
     class NoteWriter
     {
-        public bool Save(string xmlPath,Note target)
+        public static bool Save(string xmlPath,Note target)
         {
             bool result = false;
             // XML設定
@@ -368,17 +368,17 @@ namespace TreeNote.Classes
             {
                 w.WriteStartElement("root");
 
-                result = this._save(target.getRoot(), w);
+                result = _save(target.getRoot(), w);
 
                 w.WriteEndElement(); // </Books>
             }
 
             return result;
         }
-        protected bool _save(Note targetNote, XmlWriter w)
+        protected static bool _save(Note targetNote, XmlWriter w)
         {
-            if (targetNote != targetNote.getRoot())
-            {
+            //if (targetNote != targetNote.getRoot())
+            //{
                 w.WriteStartElement("Note");
 
                 w.WriteElementString("Id", targetNote.id.ToString());
@@ -390,17 +390,24 @@ namespace TreeNote.Classes
                     w.WriteElementString("PrevId", targetNote.prevItem.id.ToString());
                 }
 
-                w.WriteElementString("ParentId", targetNote.parent.id.ToString());
+                if (targetNote.parent != null)
+                {
+                    w.WriteElementString("ParentId", targetNote.parent.id.ToString());
+                }
+                else
+                {
+                    w.WriteElementString("ParentId", "-1");
+                }
 
                 w.WriteEndElement(); // </Note>
 
-            }
+            //}
 
             if (targetNote.HasChild())
             {
                 foreach (Note tn in targetNote.children)
                 {
-                    this._save(tn, w);
+                    _save(tn, w);
                 }
             }
             return true;

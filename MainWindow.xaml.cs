@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Microsoft.Win32;
+
 namespace TreeNote
 {
     /// <summary>
@@ -21,19 +23,84 @@ namespace TreeNote
     public partial class MainWindow : Window
     {
 
+        protected string filepath;
+        protected Classes.Note note;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            Classes.Note note = Classes.NoteReader.Read(
-                System.IO.Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + @"\sample.txt");
-
-            this.main.SetNote(note);
+            CreateNewFile();
         }
 
-        private void lblSaveBtn_MouseDown(object sender, MouseButtonEventArgs e)
+        protected void CreateNewFile()
         {
-            this.Save(@"C:\Users\yusuke.gotou\Documents\Visual Studio 2012\Projects\TreeNote\TreeNote\bin\Debug\sample.txt");
+            filepath = "";
+
+            this.note = new Classes.Note();
+            this.note.title = "新しいノート";
+
+            this.mainView.SetNote(this.note);
+        }
+
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+            CreateNewFile();
+        }
+
+        private void btnOpen_Click(object sender, RoutedEventArgs e)
+        {
+            this.OpenFile();
+        }
+
+        protected void OpenFile()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = "";
+            ofd.DefaultExt = "*.*";
+            if (ofd.ShowDialog() == true)
+            {
+                this.note = Classes.NoteReader.Read(ofd.FileName);
+                this.mainView.SetNote(this.note);
+            }
+        }
+
+        private void btnSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            this.SaveAs();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            this.Save();
+        }
+
+        protected void SaveAs()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "";
+            sfd.DefaultExt = "*.*";
+            if (sfd.ShowDialog() == true)
+            {
+                this.filepath = sfd.FileName;
+                this.Save();
+            }
+        }
+
+        protected void Save()
+        {
+            if (this.filepath == "")
+            {
+                SaveAs();
+            }
+            else
+            {
+                if (Classes.NoteWriter.Save(this.filepath, this.note) == false)
+                {
+                    //エラー表示未実装
+                    int i = 1;
+                }
+            }
         }
 
     }
