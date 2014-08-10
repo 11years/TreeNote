@@ -33,7 +33,7 @@ namespace TreeNote
 
         private void lblSaveBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //this._note.Save(@"C:\Users\yusuke.gotou\Documents\Visual Studio 2012\Projects\TreeNote\TreeNote\bin\Debug\sample.txt");
+            this.Save(@"C:\Users\yusuke.gotou\Documents\Visual Studio 2012\Projects\TreeNote\TreeNote\bin\Debug\sample.txt");
         }
 
     }

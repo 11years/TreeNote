@@ -62,7 +62,7 @@ namespace TreeNote.Elements
             return (Classes.Note)this.treeNotes.SelectedItem;
         }
 
-        public void SetNote(ObservableCollection<Classes.Note> note)
+        public void SetNote(Classes.Note note)
         {
             //this.item = note;
 
@@ -70,35 +70,72 @@ namespace TreeNote.Elements
             //treeitem.Add(note);
 
             //this.treeNotes.ItemsSource = treeitem;
-            this.treeNotes.ItemsSource = note;
+            ObservableCollection<Classes.Note> t = new ObservableCollection<Classes.Note>();
+            t.Add(note);
+            this.treeNotes.ItemsSource = t;
             
         }
 
         public void SelectNote(Classes.Note note)
         {
-            foreach (TreeViewItem t in this.treeNotes.Items)
-            {
-                //未実装
-            }
+            //未実装
         }
 
+        /// <summary>
+        /// 子ノートの追加
+        /// </summary>
+        /// <param name="note"></param>
         public void AddNote(Classes.Note note = null)
         {
             if (note == null)
             {
                 //新規追加
-                Classes.Note newNote = new Classes.Note(DateTime.Now.ToString(),"");
+                Classes.Note newNote = new Classes.Note("新しいノート", "");
                 Classes.Note selectedNote = (Classes.Note)this.treeNotes.SelectedItem;
 
+                //ノート追加
                 selectedNote.Add(newNote);
 
-                //ツリービューの表示を更新
-                //this.treeNotes.Items.Refresh();
+                //アクティブノート変更
+                this.SelectNote(newNote);
             }
             else
             {
                 //既存のものを追加
             }
+        }
+        
+        /// <summary>
+        /// ノートの挿入
+        /// </summary>
+        /// <param name="note"></param>
+        public void InsertNote(Classes.Note note = null)
+        {
+            if (note == null)
+            {
+                //新規追加
+                Classes.Note newNote = new Classes.Note("新しいノート", "");
+                Classes.Note selectedNote = (Classes.Note)this.treeNotes.SelectedItem;
+
+                //ノート追加
+                selectedNote.parent.Insert(selectedNote.parent.IndexOf(selectedNote) + 1, newNote);
+
+                //アクティブノート変更
+                this.SelectNote(newNote);
+            }
+            else
+            {
+                //既存のものを追加
+            }
+        }
+
+        /// <summary>
+        /// ノートの削除
+        /// </summary>
+        public void RemoveNote()
+        {
+            Classes.Note selectedNote = (Classes.Note)this.treeNotes.SelectedItem;
+            selectedNote.parent.Remove(selectedNote);
         }
 
         //public void RefreshTree()

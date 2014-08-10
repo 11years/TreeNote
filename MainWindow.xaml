@@ -13,7 +13,7 @@
             <TextBox Style="{StaticResource SearchBox}" Background="#FFFFFF" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="5,5,5,5" MaxWidth="250" MinWidth="200" Height="25"/>
         </DockPanel>
         <DockPanel Background="#FFDAE2EA">
-            <TabControl Margin="0,10,0,0">
+            <TabControl x:Name="tabBase" Margin="0,10,0,0">
                 <TabItem Header="main">
                     <Elements:MainView x:Name="main"/>
                 </TabItem>

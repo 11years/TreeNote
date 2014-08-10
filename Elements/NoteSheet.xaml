@@ -14,7 +14,7 @@
             <DockPanel x:Name="dckHeader" DockPanel.Dock="Top">
             <Button x:Name="btnSelect" Style="{StaticResource NoteTitleSideButton}" DockPanel.Dock="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnSelect_Click">＞</Button>
             <DockPanel></DockPanel>
-            <Button x:Name="btnDelete" Style="{StaticResource NoteTitleSideButton}" DockPanel.Dock="Right" >....</Button>
+            <Button x:Name="btnDelete" Style="{StaticResource NoteTitleSideButton}" DockPanel.Dock="Right" Click="btnDelete_Click" >....</Button>
                 <!--<TextBox x:Name="txtTitle" Style="{StaticResource TitleEdit}" Visibility="Collapsed" LostFocus="txtTitle_LostFocus" MouseDown="txtTitle_MouseDown">tttああああああああああああt</TextBox>-->
                 <!--<Button x:Name="btnTitle" Style="{StaticResource TitleButton}" Width="{Binding Width, ElementName=txtTitle}" HorizontalContentAlignment="Stretch" Content="{Binding Text, ElementName=txtTitle}" Click="btnTitle_Click" MouseDoubleClick="btnTitle_MouseDoubleClick"></Button>-->
                 <Button x:Name="btnTitle" Style="{StaticResource TitleButton}" HorizontalContentAlignment="Stretch" Content="testesButton" Click="btnTitle_Click"/>

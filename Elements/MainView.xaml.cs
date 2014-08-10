@@ -43,7 +43,7 @@ namespace TreeNote.Elements
         public void SetNote(Classes.Note note)
         {
             this.Items = note;
-            this.mainTree.SetNote(note.children);
+            this.mainTree.SetNote(note);
         }
 
         public void SelectNote(Classes.Note note, bool updateHistory = true)
@@ -58,7 +58,17 @@ namespace TreeNote.Elements
                     {
                         history.RemoveAt(i);
                     }
-                    history.Insert(0, note);
+
+                    
+                    if (history.Count == 0)
+                    {
+                        history.Insert(0, note);
+                    }
+                    else if (note != history[0])
+                    {
+                        //移動していた場合のみ記録
+                        history.Insert(0, note);
+                    }
                     historyInd = 0;
                 }
 
@@ -121,12 +131,17 @@ namespace TreeNote.Elements
 
         private void ntvControl_Insert(object sender, RoutedEventArgs e)
         {
-
+            this.mainTree.InsertNote();
         }
 
         private void ntvControl_Remove(object sender, RoutedEventArgs e)
         {
+            this.mainTree.RemoveNote();
+        }
 
+        private void adrsActiveNote_SelectNote(object sender, RoutedEventArgs e)
+        {
+            this.SelectNote((Classes.Note)e.OriginalSource);
         }
 
     }

@@ -232,6 +232,16 @@ namespace TreeNote.Classes
             return null;
         }
 
+        /// <summary>
+        /// 特定要素のIndexを返す
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns></returns>
+        public int IndexOf(Note note)
+        {
+            return this.children.IndexOf(note);
+        }
+
     }
 
     class NoteReader
@@ -294,8 +304,8 @@ namespace TreeNote.Classes
                 }
             }
 
-            Note ret = new Note();
-            ConstructionNotes(itemList, -1, -1, ret, null);
+            //Note ret = new Note();
+            Note ret =ConstructionNotes(itemList, -1, -1, null, null);
 
              return ret;
 

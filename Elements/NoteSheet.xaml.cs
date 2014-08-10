@@ -155,5 +155,10 @@ namespace TreeNote.NoteSheet
         {
             this.txtBody.TextChanged -= _setBody;
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            EditTitle();
+        }
     }
 }

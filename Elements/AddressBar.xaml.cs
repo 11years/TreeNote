@@ -20,6 +20,36 @@ namespace TreeNote.Elements
     /// </summary>
     public partial class AddressBar : UserControl
     {
+        public static readonly RoutedEvent SelectNoteEvent;
+
+        /// <summary>
+        /// RoutedEventの登録
+        /// </summary>
+        static AddressBar()
+        {
+            SelectNoteEvent =
+                EventManager.RegisterRoutedEvent("SelectNote",
+                RoutingStrategy.Bubble,
+                typeof(RoutedEventArgs), typeof(RoutedEvent));
+        }
+
+        public event RoutedEventHandler SelectNote
+        {
+            add { base.AddHandler(SelectNoteEvent, value); }
+            remove { base.RemoveHandler(SelectNoteEvent, value); }
+        }
+        protected virtual void fire_Event(RoutedEventArgs e)
+        {
+            base.RaiseEvent(e);
+        }
+        private void btnNote_Click(object sender, RoutedEventArgs e)
+        {
+            //こんな実装してしまっていいのか
+            RoutedEventArgs te = new RoutedEventArgs(SelectNoteEvent, ((Button)e.Source).Tag);
+            //RoutedEventArgs te = new RoutedEventArgs(SelectNoteEvent, this);
+            fire_Event(te);
+        }
+
         public AddressBar()
         {
             InitializeComponent();
@@ -52,6 +82,8 @@ namespace TreeNote.Elements
                 bt.Content = " > " + list[i].title;
                 bt.Style = (Style)(FindResource("AddressButton")); ;
                 DockPanel.SetDock(bt, Dock.Left);
+                bt.Click += btnNote_Click;
+                bt.Tag = list[i];
 
                 this.stkBase.Children.Add(bt);
             }
