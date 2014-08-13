@@ -19,6 +19,6 @@
                 <!--<Button x:Name="btnTitle" Style="{StaticResource TitleButton}" Width="{Binding Width, ElementName=txtTitle}" HorizontalContentAlignment="Stretch" Content="{Binding Text, ElementName=txtTitle}" Click="btnTitle_Click" MouseDoubleClick="btnTitle_MouseDoubleClick"></Button>-->
                 <Button x:Name="btnTitle" Style="{StaticResource TitleButton}" HorizontalContentAlignment="Stretch" Content="testesButton" Click="btnTitle_Click"/>
         </DockPanel>
-        <TextBox x:Name="txtBody" Style="{StaticResource BodyStyle}" DockPanel.Dock="Top" TextWrapping="WrapWithOverflow" TextChanged="txtBody_TextChanged" GotFocus="txtBody_GotFocus" LostFocus="txtBody_LostFocus">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</TextBox>
+        <TextBox x:Name="txtBody" Style="{StaticResource BodyStyle}" DockPanel.Dock="Top" TextWrapping="Wrap" TextChanged="txtBody_TextChanged" GotFocus="txtBody_GotFocus" LostFocus="txtBody_LostFocus">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</TextBox>
     </DockPanel>
 </UserControl>

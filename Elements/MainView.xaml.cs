@@ -72,6 +72,7 @@ namespace TreeNote.Elements
                     historyInd = 0;
                 }
 
+                this.SelectedItem = note;
                 this.notelist.SetNote(note);
                 this.adrsActiveNote.SetNote(note);
             }else{
