@@ -243,6 +243,37 @@ V  濁点つきの文字を１文字に変換する (K、H と共に利用する
         <ParentId>7</ParentId>
     </Note>
     <Note>
+        <Id>25</Id>
+        <Title>foreach</Title>
+        <Body>foreach (配列変数 as キー変数 =&gt; 値変数){
+  実行する処理;
+}
+
+
+
+$preflist = array('Tokyo' =&gt; '東京', 'Osaka' =&gt; '大阪');
+
+foreach ($preflist as $key =&gt; $value){
+  print $key.'=&gt;'.$value;
+}
+</Body>
+        <PrevId>8</PrevId>
+        <ParentId>7</ParentId>
+    </Note>
+    <Note>
+        <Id>20</Id>
+        <Title>CakePHP</Title>
+        <Body />
+        <PrevId>7</PrevId>
+        <ParentId>4</ParentId>
+    </Note>
+    <Note>
+        <Id>21</Id>
+        <Title>Viewを描画しない</Title>
+        <Body>$this-&gt;autoRender = FALSE;</Body>
+        <ParentId>20</ParentId>
+    </Note>
+    <Note>
         <Id>13</Id>
         <Title>Linux</Title>
         <Body>Linux系のコマンドなど</Body>
@@ -254,5 +285,29 @@ V  濁点つきの文字を１文字に変換する (K、H と共に利用する
         <Title>空き容量を調べる</Title>
         <Body />
         <ParentId>13</ParentId>
+    </Note>
+    <Note>
+        <Id>22</Id>
+        <Title>JavaScript</Title>
+        <Body />
+        <PrevId>13</PrevId>
+        <ParentId>1</ParentId>
+    </Note>
+    <Note>
+        <Id>23</Id>
+        <Title>Ajax</Title>
+        <Body />
+        <ParentId>22</ParentId>
+    </Note>
+    <Note>
+        <Id>24</Id>
+        <Title>同期通信</Title>
+        <Body>オプションに「async: false」を追加
+
+var html = $.ajax({
+  url: "some.php",
+  async: false
+ }).responseText;</Body>
+        <ParentId>23</ParentId>
     </Note>
 </root>
