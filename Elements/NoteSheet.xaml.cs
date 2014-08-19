@@ -20,8 +20,15 @@ namespace TreeNote.NoteSheet
     /// </summary>
     public partial class NoteSheet : UserControl
     {
+        private enum NSDisplayMode
+        {
+            Close,
+            HalfOpen,
+            Open
+        }
 
         public Classes.Note item;
+        private NSDisplayMode mode;
 
         public static readonly RoutedEvent EnterNoteEvent;
         static NoteSheet()
@@ -49,6 +56,8 @@ namespace TreeNote.NoteSheet
         protected NoteSheet()
         {
             InitializeComponent();
+
+            HalfOpenBody();
         }
 
         public NoteSheet(ref Classes.Note note)
@@ -60,6 +69,8 @@ namespace TreeNote.NoteSheet
             this.SetNote();
 
             if (note.HasChild() == false) { this.btnSelect.Visibility = System.Windows.Visibility.Collapsed; }
+
+            HalfOpenBody();
         }
 
         protected void SetNote()
@@ -78,13 +89,17 @@ namespace TreeNote.NoteSheet
         /// </summary>
         public void Switch()
         {
-            if (this.txtBody.IsVisible)
+            switch (mode)
             {
-                CloseBody();
-            }
-            else
-            {
-                OpenBody();
+                case NSDisplayMode.Close:
+                    HalfOpenBody();
+                    break;
+                case NSDisplayMode.HalfOpen:
+                    OpenBody();
+                    break;
+                case NSDisplayMode.Open:
+                    CloseBody();
+                    break;
             }
         }
         /// <summary>
@@ -93,6 +108,17 @@ namespace TreeNote.NoteSheet
         public void OpenBody()
         {
             this.txtBody.Visibility = System.Windows.Visibility.Visible;
+            this.txtBody.Height = double.NaN;
+            mode = NSDisplayMode.Open;
+        }
+        /// <summary>
+        /// 本文半分開く
+        /// </summary>
+        public void HalfOpenBody()
+        {
+            this.txtBody.Visibility = System.Windows.Visibility.Visible;
+            this.txtBody.Height = 50;
+            mode = NSDisplayMode.HalfOpen;
         }
         /// <summary>
         /// 本文閉じる
@@ -100,7 +126,9 @@ namespace TreeNote.NoteSheet
         public void CloseBody()
         {
             this.txtBody.Visibility = System.Windows.Visibility.Collapsed;
+            mode = NSDisplayMode.Close;
         }
+
 
 
         protected void EditTitle()
