@@ -2,9 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:NoteSheet="clr-namespace:TreeNote.NoteSheet" xmlns:Elements="clr-namespace:TreeNote.Elements" x:Class="TreeNote.MainWindow"
+        xmlns:ad="clr-namespace:Xceed.Wpf.AvalonDock;assembly=Xceed.Wpf.AvalonDock"
         Title="MainWindow" Height="544.6" Width="765.8">
     <DockPanel>
-        <DockPanel DockPanel.Dock="Top" Background="#FF47A5E4">
+            <DockPanel DockPanel.Dock="Top" Background="#FF47A5E4">
             <Button x:Name="btnNew" Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="新規作成" Click="btnNew_Click"/>
             <Button x:Name="btnOpen" Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="開く" Click="btnOpen_Click" />
             <Button x:Name="btnSaveAs" Style="{StaticResource MenuButton}" DockPanel.Dock="Left" HorizontalAlignment="Left" Content="別名保存" Click="btnSaveAs_Click" />
@@ -15,7 +16,7 @@
         <DockPanel Background="#FFDAE2EA">
             <TabControl x:Name="tabBase" Margin="0,10,0,0">
                 <TabItem Header="main">
-                    <Elements:MainView x:Name="mainView"/>
+                        <Elements:MainView x:Name="mainView"/>
                 </TabItem>
             </TabControl>
         </DockPanel>
