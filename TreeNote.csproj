@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Elements\NoteEditer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Elements\NoteList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +96,9 @@
     </Compile>
     <Compile Include="Elements\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Elements\NoteEditer.xaml.cs">
+      <DependentUpon>NoteEditer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\NoteList.xaml.cs">
       <DependentUpon>NoteList.xaml</DependentUpon>
@@ -154,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Memo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sample.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

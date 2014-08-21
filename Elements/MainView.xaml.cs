@@ -74,6 +74,7 @@ namespace TreeNote.Elements
 
                 this.notelist.SetNote(note, this.txtFilter.Text);
                 this.adrsActiveNote.SetNote(note);
+                this.noteEditer.SetNote(note);
             }else{
                 this.notelist.Clear();
                 //アドレスバー初期化未実装
@@ -146,7 +147,7 @@ namespace TreeNote.Elements
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            this.notelist.SetNote(this.SelectedItem, this.txtFilter.Text);
+            //this.notelist.SetNote(this.SelectedItem, this.txtFilter.Text);
         }
 
     }

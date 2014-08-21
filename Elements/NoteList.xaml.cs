@@ -29,14 +29,14 @@ namespace TreeNote.Elements
 
         public void SetNote(Classes.Note note, string filter = "")
         {
-            this.dckNoteView.Children.Clear();
+            //this.dckNoteView.Children.Clear();
 
-            NoteSheet.NoteSheet ns = new NoteSheet.NoteSheet(ref note);
-            ns.btnSelect.Visibility = System.Windows.Visibility.Collapsed;
+            //NoteSheet.NoteSheet ns = new NoteSheet.NoteSheet(ref note);
+            //ns.btnSelect.Visibility = System.Windows.Visibility.Collapsed;
 
-            this.dckNoteView.Children.Add(ns);
-            DockPanel.SetDock(ns, Dock.Top);
-            ns = null;
+            //this.dckNoteView.Children.Add(ns);
+            //DockPanel.SetDock(ns, Dock.Top);
+            //ns = null;
 
             if (note.HasChild())
             {
@@ -46,8 +46,8 @@ namespace TreeNote.Elements
                     //var t = from q in displayNotes
                     //               where q.title == "" || q.body == ""
                     //               select q;
-                    var withHyphen = new System.Text.RegularExpressions.Regex(filter, System.Text.RegularExpressions.RegexOptions.Multiline);
-                    displayNotes = (ObservableCollection<Classes.Note>)note.children.Where(x => withHyphen.Matches(note.title,0));
+                    //var withHyphen = new System.Text.RegularExpressions.Regex(filter, System.Text.RegularExpressions.RegexOptions.Multiline);
+                    //displayNotes = (ObservableCollection<Classes.Note>)note.children.Where(x => withHyphen.Matches(note.title,0));
 
                 }
 
