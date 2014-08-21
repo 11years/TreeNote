@@ -131,7 +131,6 @@
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
         <Setter Property="BorderBrush" Value="#888888" />
-        <Setter Property="VerticalAlignment" Value="Top" />
 
         <Setter Property="AcceptsReturn" Value="True" />
 

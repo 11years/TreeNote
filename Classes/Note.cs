@@ -58,10 +58,14 @@ namespace TreeNote.Classes
 
         private void NotifyPropertyChanged(string info)
         {
+
             if (PropertyChanged != null)
             {
+
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
+
             }
+
         }
 
         /// <summary>
@@ -115,7 +119,7 @@ namespace TreeNote.Classes
         }
         protected int getMaxId()
         {
-            int result = this.id;
+            int result = -1;
 
             if (this.HasChild())
             {
@@ -285,12 +289,6 @@ namespace TreeNote.Classes
 
                                     itemList.Add(Tuple.Create<int, string, string, int, int>(tId, tTitle, tBody, tParentId, tPrevId));
 
-                                    //変数初期化
-                                    tId = -1;
-                                    tTitle = "";
-                                    tBody = "";
-                                    tPrevId = -1;
-                                    tParentId = -1;
                                     break;
                             }
                         }
