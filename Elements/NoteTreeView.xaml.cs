@@ -23,7 +23,6 @@ namespace TreeNote.Elements
     public partial class NoteTreeView : UserControl
     {
         public static readonly RoutedEvent SelectedNoteChangeEvent;
-        List<Classes.Note> treeitem;
 
         public NoteTreeView()
         {
