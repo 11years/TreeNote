@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace TreeNote.Elements
 {
@@ -26,7 +27,7 @@ namespace TreeNote.Elements
             InitializeComponent();
         }
 
-        public void SetNote(Classes.Note note)
+        public void SetNote(Classes.Note note, string filter = "")
         {
             this.dckNoteView.Children.Clear();
 
@@ -39,7 +40,18 @@ namespace TreeNote.Elements
 
             if (note.HasChild())
             {
-                for (int i = 0; i < note.children.Count; i++)
+                var displayNotes = note.children;
+                if (filter != "")
+                {
+                    //var t = from q in displayNotes
+                    //               where q.title == "" || q.body == ""
+                    //               select q;
+                    var withHyphen = new System.Text.RegularExpressions.Regex(filter, System.Text.RegularExpressions.RegexOptions.Multiline);
+                    displayNotes = (ObservableCollection<Classes.Note>)note.children.Where(x => withHyphen.Matches(note.title,0));
+
+                }
+
+                for (int i = 0; i < displayNotes.Count; i++)
                 {
                     Classes.Note tn = note.children[i];
                     NoteSheet.NoteSheet tns = new NoteSheet.NoteSheet(ref tn);

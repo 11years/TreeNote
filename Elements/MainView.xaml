@@ -18,12 +18,12 @@
             <Elements:AddressBar DockPanel.Dock="Top" x:Name="adrsActiveNote" VerticalAlignment="Top" Height="20" SelectNote="adrsActiveNote_SelectNote"/>
             <DockPanel Background="#FFF7BB1A">
                 <Elements:NoteViewControl x:Name="nvControler" DockPanel.Dock="Left" VerticalAlignment="Top" Height="30" AllClose="AllCloseHandler" AllOpen="AllOpenHandler"/>
-                <TextBox Style="{StaticResource SearchBox}" 
+                <TextBox x:Name="txtFilter" Style="{StaticResource SearchBox}" 
                      DockPanel.Dock="Right" 
                      HorizontalAlignment="Right" 
                      MaxWidth="300" 
                      MinWidth="120" 
-                     Margin="3,3,3,3"></TextBox>
+                     Margin="3,3,3,3" TextChanged="txtFilter_TextChanged"></TextBox>
             </DockPanel>
         </DockPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

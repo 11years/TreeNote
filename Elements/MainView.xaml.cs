@@ -72,7 +72,7 @@ namespace TreeNote.Elements
                     historyInd = 0;
                 }
 
-                this.notelist.SetNote(note);
+                this.notelist.SetNote(note, this.txtFilter.Text);
                 this.adrsActiveNote.SetNote(note);
             }else{
                 this.notelist.Clear();
@@ -142,6 +142,11 @@ namespace TreeNote.Elements
         private void adrsActiveNote_SelectNote(object sender, RoutedEventArgs e)
         {
             this.SelectNote((Classes.Note)e.OriginalSource);
+        }
+
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.notelist.SetNote(this.SelectedItem, this.txtFilter.Text);
         }
 
     }
