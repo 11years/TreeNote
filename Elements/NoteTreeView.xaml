@@ -21,7 +21,6 @@
                   DockPanel.Dock="Top"
                   SelectedItemChanged="treeNotes_SelectedItemChanged"
                   VerticalAlignment="Stretch"
-                  ItemsSource="{Binding treeItems}"
                   ItemTemplate="{StaticResource treeViewTemplate}" />
     </DockPanel>
 </UserControl>
