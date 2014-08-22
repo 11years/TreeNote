@@ -43,7 +43,8 @@ NoteListでNote選択時にイベントを設定して、アドレスバー、�
 テキストが端で折り返すようにする
 フィルタ
 ノート移動時にツリービューを更新
-親ノートの表示について検討（色を変えるなど）</Body>
+親ノートの表示について検討（色を変えるなど）
+履歴機能欲しい</Body>
         <PrevId>16</PrevId>
         <ParentId>3</ParentId>
     </Note>
@@ -353,5 +354,136 @@ var html = $.ajax({
   async: false
  }).responseText;</Body>
         <ParentId>23</ParentId>
+    </Note>
+    <Note>
+        <Id>27</Id>
+        <Title>jQuery</Title>
+        <Body />
+        <PrevId>22</PrevId>
+        <ParentId>1</ParentId>
+    </Note>
+    <Note>
+        <Id>28</Id>
+        <Title>DOM操作</Title>
+        <Body />
+        <ParentId>27</ParentId>
+    </Note>
+    <Note>
+        <Id>29</Id>
+        <Title>AppendとAppendToについて</Title>
+        <Body>$('#A').append($('#B'))
+AにBを追加する
+
+$('#B').appendTo($('#A'))
+BをAに追加する
+
+作成されるHTMLは同じ。
+
+しかし、戻り値のJQueryオブジェクトが違う
+
+$('#A').append($('#B'))
+は
+A
+
+$('#B').appendTo($('#A'))
+は
+B
+
+続けて操作したいオブジェクトが
+
+Aの時は
+append()
+Bの時は
+appendTo() </Body>
+        <ParentId>28</ParentId>
+    </Note>
+    <Note>
+        <Id>30</Id>
+        <Title>一覧</Title>
+        <Body>http://semooh.jp/jquery/api/manipulation/
+
+内部挿入
+
+append(content)
+    全ての要素内部にコンテンツを追加する。
+appendTo(content)
+    要素の中身を他の要素に追加する。
+prepend(content)
+    全ての要素内部の先頭にコンテンツを挿入する。
+prependTo(content)
+    要素の中身を他の要素に追加します。
+
+外部挿入
+
+after(content)
+    各要素の後ろにコンテンツを挿入する。
+before(content)
+    各要素の前にコンテンツを挿入する。
+insertAfter(content)
+    要素を指定した他の要素の後に挿入する。
+insertBefore(content)
+    要素を指定した他の要素の前に挿入する。
+
+周囲への挿入
+
+wrap(html)
+    各要素を構造的に指定HTMLで囲む。
+wrap(elem)
+    各要素を構造的に指定要素で囲む。
+wrapAll(html)
+    各要素をひとまとめにして1つのHTML指定要素で囲む。
+wrapAll(elem)
+    各要素をひとまとめにして1つの指定要素で囲む。
+wrapInner(html)
+    要素が持つ各子要素（テキスト含む）をHTML指定要素で囲む。
+wrapInner(elem)
+    要素が持つ各子要素（テキスト含む）を指定要素で囲む。
+
+置換
+
+replaceWith(content)
+    各要素を指定HTMLもしくはDOM Elementで置き換える。
+replaceAll(selector)
+    指定条件に合致する要素を全て置き換える。
+
+削除
+
+empty()
+    要素集合から全ての子要素を削除する。
+remove([expr])
+    DOMから指定条件に合致する要素を全て削除する。
+
+コピー
+
+clone()
+    DOM要素をコピーして新たに作成。
+clone(true)
+    DOM要素を、その要素が持つイベントも含めてコピーする。 </Body>
+        <PrevId>29</PrevId>
+        <ParentId>28</ParentId>
+    </Note>
+    <Note>
+        <Id>31</Id>
+        <Title>valueに文字列を設定</Title>
+        <Body>&lt;input type="text" value="" id="hoge" /&gt;
+$('#hoge').val('aaa');</Body>
+        <PrevId>30</PrevId>
+        <ParentId>28</ParentId>
+    </Note>
+    <Note>
+        <Id>32</Id>
+        <Title>要素の生成</Title>
+        <Body>// &lt;div&gt;&lt;/div&gt;という要素のjQueryオブジェクトを作成し、$jqObjに格納する
+var $jqObj = $("&lt;div/&gt;");  </Body>
+        <PrevId>31</PrevId>
+        <ParentId>28</ParentId>
+    </Note>
+    <Note>
+        <Id>33</Id>
+        <Title>属性を追加</Title>
+        <Body>attr(属性, 属性値)
+$('li').attr('class', 'style-li');</Body>
+        <PrevId>32</PrevId>
+        <ParentId>28</ParentId>
     </Note>
 </root>
