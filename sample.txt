@@ -22,7 +22,8 @@
     <Note>
         <Id>15</Id>
         <Title>実装済み</Title>
-        <Body>2014/08/13 IDの採番おかしいっぽい</Body>
+        <Body>2014/08/13 IDの採番おかしいっぽい
+2014/08/25 ノートエディター編集有効化</Body>
         <ParentId>3</ParentId>
     </Note>
     <Note>
@@ -32,7 +33,12 @@
 編集フラグ実装
 ドラッグ＆ドロップでノードの移動
 ノート追加時、新規ノートのタイトル編集状態に遷移
-NoteListでNote選択時にイベントを設定して、アドレスバー、ツリーなどすべて更新されるように</Body>
+
+●以下はツリービューが選択できるようになればほぼ解決
+NoteListでNote選択時にイベントを設定して、アドレスバー、ツリーなどすべて更新されるように
+ノートリストと編集中ノートは、TreeViewから選択中の要素バインドしてやりたい
+→ノートリスト選択時はツリーの選択ノード変更すればいい
+ノートエディターはノート未選択時非表示か編集不可にする、もしくは起動、読み込み時にルートノード選択させる</Body>
         <PrevId>15</PrevId>
         <ParentId>3</ParentId>
     </Note>
@@ -44,7 +50,8 @@ NoteListでNote選択時にイベントを設定して、アドレスバー、�
 フィルタ
 ノート移動時にツリービューを更新
 親ノートの表示について検討（色を変えるなど）
-履歴機能欲しい</Body>
+履歴機能欲しい
+ノートリスト最下部にノート追加ボタン追加</Body>
         <PrevId>16</PrevId>
         <ParentId>3</ParentId>
     </Note>
@@ -62,7 +69,9 @@ NoteListでNote選択時にイベントを設定して、アドレスバー、�
 添付ファイル
 htmlビューア
 ファイル暗号化
-ノードにパスワードつける</Body>
+ノードにパスワードつける
+ノートリストのドラッグ＆ドロップでノート移動できるように
+リッチテキスト対応</Body>
         <PrevId>17</PrevId>
         <ParentId>3</ParentId>
     </Note>
@@ -319,6 +328,41 @@ foreach ($preflist as $key =&gt; $value){
         <ParentId>20</ParentId>
     </Note>
     <Note>
+        <Id>39</Id>
+        <Title>テーブル追加時の注意</Title>
+        <Body>app/tmp/cache/models にあるキャッシュを一度消さないと再走査しないので
+テーブルないよエラーが出る。
+テーブルを追加したら消すこと。
+
+ーーー以下参考ーーーーーーーーーーーーーーーーーーーーーー
+
+定常状態でCakePHP（バージョン２）での開発をやっているんですが
+新しいDBテーブルを作成する度にエラーを出してしまいます。
+
+・・・というのもCakePHPではテーブルをModelとして作成しておくんですが、これがキャッシュされているのでして・・・
+このキャッシュが前の状態のままだと、「そんなテーブルねぇし」とかエラー出すんですね。
+
+いつも調べてから・・・「あぁ」とか思うんですが
+テーブルモデルのキャッシュは下記パスにあります。
+tmp/cache/models
+
+そこを消してもう一回実行すればまたキャッシュが作られるだけ・・・
+
+もう何回目だよぉぉぉおぉぉ、オレ。
+
+・・・というわけで皆様、気をつけてください。
+
+こんなエラーが出ます。（検索用に書いてみるよｗ）
+
+Error: [MissingTableException] Table sample_users for model SampleUser was not found in datasource default.
+
+ま、こんなエラーがあったら、「あぁ、あいつこんなのにいつもやられてんだな」と思ってくださいｗ
+
+では、もう迷うことがないように書いておきまーす！</Body>
+        <PrevId>21</PrevId>
+        <ParentId>20</ParentId>
+    </Note>
+    <Note>
         <Id>13</Id>
         <Title>Linux</Title>
         <Body>Linux系のコマンドなど</Body>
@@ -346,13 +390,43 @@ foreach ($preflist as $key =&gt; $value){
     </Note>
     <Note>
         <Id>24</Id>
-        <Title>同期通信</Title>
+        <Title>同期通信でAjaxを行う　※非推奨※</Title>
         <Body>オプションに「async: false」を追加
+
+※関数を分割し、setTimeoutで呼び出すほうが良いとのこと※
+※このやり方だとAjax通信完了まで処理を返さない※
 
 var html = $.ajax({
   url: "some.php",
   async: false
  }).responseText;</Body>
+        <ParentId>23</ParentId>
+    </Note>
+    <Note>
+        <Id>41</Id>
+        <Title>Ajaxの通信エラー情報を表示する方法</Title>
+        <Body>参考サイト：http://javatechnology.net/ajax/jquery-ajax-error/
+
+以下の「error:」のあたり参照
+
+  function() {
+    $.ajax({
+      url: '404.html',
+      type:'GET',
+      dataType: 'jsonp',
+      success: function(data) {
+             alert("ok");
+           },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+            $("#XMLHttpRequest").html("XMLHttpRequest : " + XMLHttpRequest.status);
+            $("#textStatus").html("textStatus : " + textStatus);
+            $("#errorThrown").html("errorThrown : " + errorThrown.message);
+         },
+      complete : function(data) {
+             alert("finishi");
+         }
+    });</Body>
+        <PrevId>24</PrevId>
         <ParentId>23</ParentId>
     </Note>
     <Note>
@@ -485,5 +559,104 @@ var $jqObj = $("&lt;div/&gt;");  </Body>
 $('li').attr('class', 'style-li');</Body>
         <PrevId>32</PrevId>
         <ParentId>28</ParentId>
+    </Note>
+    <Note>
+        <Id>34</Id>
+        <Title>Alnetz</Title>
+        <Body />
+        <PrevId>27</PrevId>
+        <ParentId>1</ParentId>
+    </Note>
+    <Note>
+        <Id>35</Id>
+        <Title>USS</Title>
+        <Body />
+        <ParentId>34</ParentId>
+    </Note>
+    <Note>
+        <Id>36</Id>
+        <Title>住まいるたっち</Title>
+        <Body />
+        <ParentId>35</ParentId>
+    </Note>
+    <Note>
+        <Id>37</Id>
+        <Title>各種接続情報</Title>
+        <Body />
+        <ParentId>36</ParentId>
+    </Note>
+    <Note>
+        <Id>38</Id>
+        <Title>divdisp validate</Title>
+        <Body> var $validate = array(
+  'display_sec' =&gt; array(
+   'numeric' =&gt; array(
+    'rule' =&gt; 'numeric',
+    'allowEmpty' =&gt; true,
+    'message' =&gt; '0より大きい数値を入力してください。'
+   ),
+   'comparison' =&gt; array(
+    'rule' =&gt; array('comparison', 'is greater', 0),
+    'allowEmpty' =&gt; true,
+    'message' =&gt; '0より大きい数値を入力してください。'
+   )
+  ),
+  'switching_times' =&gt; array(
+   'numeric' =&gt; array(
+    'rule' =&gt; 'numeric',
+    'allowEmpty' =&gt; true,
+    'message' =&gt; '0より大きい数値を入力してください。'
+   ),
+   'comparison' =&gt; array(
+    'rule' =&gt; array('comparison', 'is greater', 0),
+    'allowEmpty' =&gt; true,
+    'message' =&gt; '0より大きい数値を入力してください。'
+   )
+  ),
+  'order' =&gt; array(
+   'numeric' =&gt; array(
+    'rule' =&gt; 'numeric',
+    'allowEmpty' =&gt; true,
+    'message' =&gt; '0より大きい数値を入力してください。'
+   ),
+   'comparison' =&gt; array(
+    'rule' =&gt; array('comparison', 'is greater', 0),
+    'allowEmpty' =&gt; true,
+    'message' =&gt; '0より大きい数値を入力してください。'
+   )
+  )
+ );
+</Body>
+        <PrevId>37</PrevId>
+        <ParentId>36</ParentId>
+    </Note>
+    <Note>
+        <Id>40</Id>
+        <Title>html</Title>
+        <Body />
+        <PrevId>34</PrevId>
+        <ParentId>1</ParentId>
+    </Note>
+    <Note>
+        <Id>41</Id>
+        <Title>divから子要素がはみ出す</Title>
+        <Body>キーワード：clearfix
+参考サイト：http://archiva.jp/web/html-css/clearfix.html
+
+floatボックスが親ボックスを貫通して表示される問題について。いわゆるclearfixに関するアレコレ。
+
+親ボックスの中に「box_A (float:left;)」と「box_B (float:right;)」があるとする。OperaやFirefox等のモダンブラウザで見てみると、中身（floatボックス）の高さが親ボックスに反映されていないことが判る。ちなみに上記のソースは以下。
+
+    &lt;div style="width:140px; padding: 10px; border:1px solid #666; color: #333;"&gt;
+    &lt;div style="float: left; width: 70px; height: 100px; border:1px solid #999; background: #f0f0f0;"&gt;box_A&lt;/div&gt;
+    &lt;div style="float: right; width: 50px; height: 50px; border:1px solid #999; background: #f0f0f0;"&gt;box_B&lt;/div&gt;
+    &lt;/div&gt;
+
+これはCSSの仕様であり、CSSを正しく解釈するブラウザであれば正しい表示です。とはいえ、親ボックスに背景画像を指定している場合には背景画像の（表示領域が確保できないため）画像が表示されず、とても困る。
+
+一番簡単な解決策は、親ボックスの中にclearを指定したボックスを追加すること。
+
+floatボックスがclearボックスを押し下げることにより、親ボックスの高さもclearボックスの位置に応じて伸長する。大人の事情でclearボックスを置けない場合は、CSSで次のように指定する。この場合も原理は同じ。</Body>
+        <ParentId>40</ParentId>
     </Note>
 </root>

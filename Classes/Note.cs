@@ -119,7 +119,7 @@ namespace TreeNote.Classes
         }
         protected int getMaxId()
         {
-            int result = -1;
+            int result = this.id;
 
             if (this.HasChild())
             {
@@ -128,10 +128,6 @@ namespace TreeNote.Classes
                     int t = tn.getMaxId();
                     result = result < t ? t : result;
                 }
-            }
-            else
-            {
-                return this.id;
             }
 
             return result;
@@ -274,6 +270,11 @@ namespace TreeNote.Classes
                             {
                                 case "Id":
                                     tId = int.Parse(reader.ReadString());
+
+                                    tTitle = "";
+                                    tBody = "";
+                                    tPrevId = -1;
+                                    tParentId = -1;
                                     break;
                                 case "Title":
                                     tTitle = reader.ReadString();

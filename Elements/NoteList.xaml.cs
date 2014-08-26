@@ -29,7 +29,7 @@ namespace TreeNote.Elements
 
         public void SetNote(Classes.Note note, string filter = "")
         {
-            //this.dckNoteView.Children.Clear();
+            this.dckNoteView.Children.Clear();
 
             //NoteSheet.NoteSheet ns = new NoteSheet.NoteSheet(ref note);
             //ns.btnSelect.Visibility = System.Windows.Visibility.Collapsed;

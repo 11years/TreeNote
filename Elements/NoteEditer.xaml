@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>
-        <TextBox x:Name="textTitle" DockPanel.Dock="Top"></TextBox>
-        <TextBox x:Name="textBody"></TextBox>
+        <TextBox x:Name="textTitle" DockPanel.Dock="Top" GotFocus="textTitle_GotFocus"></TextBox>
+        <TextBox x:Name="textBody" TextWrapping="WrapWithOverflow" AcceptsReturn="True" AcceptsTab="True" GotFocus="txtBody_GotFocus"></TextBox>
     </DockPanel>
 </UserControl>

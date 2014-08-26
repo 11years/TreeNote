@@ -60,6 +60,7 @@ namespace TreeNote
             ofd.DefaultExt = "*.*";
             if (ofd.ShowDialog() == true)
             {
+                this.filepath = ofd.FileName;
                 this.note = Classes.NoteReader.Read(ofd.FileName);
                 this.mainView.SetNote(this.note);
             }
@@ -98,7 +99,6 @@ namespace TreeNote
                 if (Classes.NoteWriter.Save(this.filepath, this.note) == false)
                 {
                     //エラー表示未実装
-                    int i = 1;
                 }
             }
         }

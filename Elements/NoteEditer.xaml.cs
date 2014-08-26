@@ -33,5 +33,41 @@ namespace TreeNote.Elements
             this.textTitle.Text = this.note.title;
             this.textBody.Text = this.note.body;
         }
+
+        protected void _setTitle(object sender, RoutedEventArgs e)
+        {
+            this.note.title = this.textTitle.Text;
+        }
+        /// <summary>
+        /// 本文テキスト編集時にNoteを更新する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textTitle_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this.textTitle.TextChanged += _setTitle;
+        }
+        private void textTitle_LostFocus(object sender, RoutedEventArgs e)
+        {
+            this.textTitle.TextChanged -= _setTitle;
+        }
+
+        protected void _setBody(object sender, RoutedEventArgs e)
+        {
+            this.note.body = this.textBody.Text;
+        }
+        /// <summary>
+        /// 本文テキスト編集時にNoteを更新する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtBody_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this.textBody.TextChanged += _setBody;
+        }
+        private void txtBody_LostFocus(object sender, RoutedEventArgs e)
+        {
+            this.textBody.TextChanged -= _setBody;
+        }
     }
 }
